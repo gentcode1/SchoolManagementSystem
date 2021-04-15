@@ -5,18 +5,19 @@
   "main": "server.js",
   "scripts": {
     "test": "dev-test",
+    "start":"babel-node ./server.js",
     "dev-start": "babel-node ./server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gentcode1/School-Management-System.git"
+    "url": "https://github.com/gentcode1/SchoolManagementSystem.git"
   },
   "author": "Gentille, Diane, Olive, Malaika",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gentcode1/School-Management-System/issues"
+    "url": "https://github.com/gentcode1/SchoolManagementSystem.git"
   },
-  "homepage": "https://github.com/gentcode1/School-Management-System#readme",
+  "homepage": "https://github.com/gentcode1/SchoolManagementSystem.git",
   "dependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.12.10",
