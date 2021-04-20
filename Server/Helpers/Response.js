@@ -20,6 +20,7 @@ class  Response{
             status:status,
             error
         });
+
     }
 }
 export default Response;
