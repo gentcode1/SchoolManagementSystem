@@ -4,11 +4,17 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./Server/Router/schoolRouter"
 
+import userRouter from './Server/Router/userRouter';
+
+const app = express();
 dotenv.config({ path: "./.env" });
 const app = express();
 
 app.use(bodyparser.json());
 app.use('/api/v1/school',router)
+
+app.use("/api/v1/user", userRouter);
+
 
 app.use("/", (req, res) => {
     res.status(200).send({ status: 200, message: "this router is not exist" });
