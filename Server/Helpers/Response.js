@@ -1,5 +1,5 @@
 class  Response{
-    static successMessage=(res, message, data, status)=>{
+    static successMessage=(res, message, data=null, status)=>{
 
     res.status(status).json(
         data ?
