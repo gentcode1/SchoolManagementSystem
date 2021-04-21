@@ -34,12 +34,12 @@ class lessonController{
         return Response.successMessage(res,"success lesson",data,200)
     }
     static updateLesson=async (req,res)=>{
-        const id=re.params.id
-        const data=await lessonData.findByIdAndUpdate(id,{
-            lessonName,
+        const id=req.params.id
+        let{lessonName,
             lessonCode,
             levelType
-        })
+        }=req.body
+        const data=await lessonData.findByIdAndUpdate(id,req.body)
         if(!data){
             return Response.errorMessage(res,"couldnt update",404)
         }
