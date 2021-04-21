@@ -1,4 +1,5 @@
 import  classModelInfo from "../Model/classModel.js";
+import Response from "../Helpers/Response.js";
 class classController{
     static createClass=async(req,res)=>{
            
@@ -13,17 +14,11 @@ class classController{
     
         const data =await classModelInfo.create(req.body);
         if(!data){
-            return res.status(417).json({
-                status:417,
-                message:"fail to create",
-               
-            })
+           
+            return Response.errorMessage(res,"fail to create",417)
         }
-        return res.status(201).json({
-            status:201,
-            message:"class created successfully",
-            data
-        })    
+        
+        return Response.successMessage(res,"successfully created",data,200)   
     };
     
 //get all class
@@ -31,11 +26,9 @@ class classController{
 static getAllClass= async (req,res)=>{
     const data =await classModelInfo.find();
 
-    return res.status(200).json({
-        status:200,
-        message:"all",
-        data:data
-    })
+    
+    
+    return Response.successMessage(res,"get all classes",data,200) 
 };
     //get one class by Id
 
@@ -44,17 +37,11 @@ static getAllClass= async (req,res)=>{
         const data= await classModelInfo.findById(classId);
         
         if(!data){
-            return res.status(407).json({
-                status:407,
-                message:" no post",
-                data
-            })
+            
+            return Response.errorMessage(res,"can not create lesson",417)
         }
-        return res.status(200).json({
-            status:200,
-            message:"This is one Blog",
-            data
-        })
+        
+        return Response.successMessage(res,"one class",data,200)
     }
 
 //update
@@ -69,21 +56,12 @@ static updateOneclass=async (req,res)=>{
     }=req.body
     const data=await classModelInfo.findByIdAndUpdate(id,req.body)
     if(!data){
-        return res.status(407).json({
-            status:407,
-            message:" no post",
-            data
-        })
-        //return Response.errorMessage(res,"couldnt update",404)
+        
+        return Response.errorMessage(res,"couldnt update",404)
     }
     const dataUpated= await classModelInfo.findById(id)
-    return res.status(200).json({
-        status:200,
-        message:"successfully update ",
-        dataUpated
-        
-    })
-   // return Response.successMessage(res,"successfully update",dataUpated,200)
+    
+   return Response.successMessage(res,"successfully update",dataUpated,200)
 }
     
     }

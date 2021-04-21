@@ -1,4 +1,5 @@
 import teacherInfo from "../Model/teacherModel.js";
+import Response from "../Helpers/Response.js";
 
 class teacherController{
 static createTeacher=async(req,res)=>{
@@ -12,27 +13,18 @@ static createTeacher=async(req,res)=>{
 
     const teacher =await teacherInfo.create(req.body);
     if(!teacher){
-        return res.status(417).json({
-            status:417,
-            message:" Blog failed",
-            
-        })
+      
+        return Response.errorMessage(res,"problem with creating the account",417)
     }
-    return res.status(201).json({
-        status:201,
-        message:"blog created successfully",
-        teacher
-    })    
+     
+    return Response.successMessage(res,"created successfully",teacher,200)
 };
 //get all
 static getAll= async (req,res)=>{
     const data =await teacherInfo.find();
 
-    return res.status(200).json({
-        status:200,
-        message:"all",
-        data:data
-    })
+  
+    return Response.successMessage(res,"get all",data,200)
 };
 
 //get one class by Id
@@ -48,11 +40,8 @@ static getOne=async(req,res)=>{
             data
         })
     }
-    return res.status(200).json({
-        status:200,
-        message:"This is one Blog",
-        data
-    })
+    
+    return Response.successMessage(res," one teacher",data,200)
 }
 
 //update
@@ -67,21 +56,12 @@ let{
 }=req.body
 const data=await teacherInfo.findByIdAndUpdate(id,req.body)
 if(!data){
-    return res.status(407).json({
-        status:407,
-        message:" no post",
-        data
-    })
-    //return Response.errorMessage(res,"couldnt update",404)
+    
+    return Response.errorMessage(res,"couldn't update",404)
 }
 const dataUpated= await teacherInfo.findById(id)
-return res.status(200).json({
-    status:200,
-    message:"successfully update ",
-    dataUpated
-    
-})
-// return Response.successMessage(res,"successfully update",dataUpated,200)
+
+return Response.successMessage(res,"successfully update",dataUpated,200)
 }
 
 }
