@@ -3,17 +3,19 @@ import bodyparser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./Server/Router/schoolRouter"
+import lessonRouter from "./Server/Router/lessonRouter"
 
 import userRouter from './Server/Router/userRouter';
 
 const app = express();
 dotenv.config({ path: "./.env" });
-const app = express();
+
 
 app.use(bodyparser.json());
 app.use('/api/v1/school',router)
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/lesson",lessonRouter)
 
 
 app.use("/", (req, res) => {
