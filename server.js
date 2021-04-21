@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import router from "./Server/Router/schoolRouter"
 
 import userRouter from './Server/Router/userRouter';
+import authRouter from './Server/Router/userAuthRoute';
+import studentRoute  from './Server/Router/studentRouter';
 
 const app = express();
 dotenv.config({ path: "./.env" });
@@ -14,6 +16,8 @@ app.use(bodyparser.json());
 app.use('/api/v1/school',router)
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/user/auth", authRouter);
+app.use("/api/v1/student", studentRoute);
 
 
 app.use("/", (req, res) => {

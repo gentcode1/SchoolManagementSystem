@@ -1,5 +1,5 @@
 import userInfo from '../Model/userModel';
-import bycrypt from 'bcrypt';
+import bycrypt from 'bcrypt'
 import Response from '../Helpers/Response';
 
 class UserController{
@@ -11,11 +11,13 @@ static registerUser=  async(req , res)=>{
         role,
         isActive
     }=req.body
-    
+   password= bycrypt.hashSync(password, 15);
+
 const userExist= await userInfo.findOne({email:email});
 if(userExist){
 return Response.errorMessage(res, "user already exist", 409);
 }
+req.body.password=password;
 const userData= await userInfo.create(req.body);
 if(!userData){
     return Response.errorMessage(res, "no user data provided!", 404);
