@@ -10,9 +10,12 @@ const studentSchema= new mongoose.Schema({
             type: String,
             required: true
         },
+        email:{
+            type: String,
+            required: true 
+        },
         address:[{ 
-          type: String,
-          required: true,
+          
           countryAddress:{type:String},
           province:{type:String},
           district:{type:String}
@@ -20,7 +23,7 @@ const studentSchema= new mongoose.Schema({
  }],
         
         guardian: {
-            required: true,
+            
             guardianNames:{required: true,type:String},
             guardianPhone:{required: true,type:String},
             guardianEmail:{required: true,type:String},
@@ -41,8 +44,8 @@ const studentSchema= new mongoose.Schema({
             }],
             yearOfStudy: {required: true,type:String}
           
-          }],
-          userId:{required: true,type:String}
+          }]
+          //userId:{required: true,type:String}
 });
 
 const studentInfo= mongoose.model("student", studentSchema);
