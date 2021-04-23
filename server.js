@@ -18,6 +18,7 @@ import studentRoute  from './Server/Router/studentRouter';
 const app = express();
 dotenv.config({ path: "./.env" });
 
+
 app.use(bodyparser.json());
 
 app.use('/api/v1/class', ClassRouter);
