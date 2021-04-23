@@ -21,6 +21,7 @@ const userSchema= new mongoose.Schema({
         defaults:true,
         required:[true,"is active or not"]
     },
+
     passwordChangedTime:{
         type: String,
         defaults: Date.now()
@@ -32,7 +33,13 @@ const userSchema= new mongoose.Schema({
     confirmPassword:{
         type:String,
         
+
+    schoolId:{
+        type:mongoose.Schema.ObjectId,
+        ref:"school"
+
     }
+   
 });
 
 const userInfo= mongoose.model("user", userSchema);

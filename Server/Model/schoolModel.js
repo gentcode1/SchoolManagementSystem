@@ -7,18 +7,33 @@ const schoolSchema=new mongoose.Schema({
         district:String,
         sector:String
     },
-    phone:[String],
-    motor:String,
-    logo:String,
-    website:String,
-    headmaster:[{
-        names:String,
-        phone:String,
-        email:String,
-        yearOfStart:String,
-        isActive:{enum:["true","false"]},
-    }],
-    userId:String
+    phone:{
+        type:String
+    },
+    motor:{
+        type:String},
+    logo:{
+        type:String},
+    website:{
+        type:String},
+    headmaster:{
+        names:{
+            type:String},
+        phone:{
+        type:String},
+        email:{
+            type:String},
+        yearOfStart:{
+            type:String},
+        isActive:{
+            enum:["true","false"]
+        },
+    },
+    userId:{
+        type:mongoose.Schema.ObjectId,
+        ref:"user",
+        required:[true,"user is required"]
+    }
 });
 const schoolData= mongoose.model("school",schoolSchema);
 export default schoolData;
