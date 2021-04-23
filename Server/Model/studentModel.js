@@ -35,10 +35,13 @@ const studentSchema= new mongoose.Schema({
               classId:{
                 type:mongoose.Schema.ObjectId,
                 ref:"class"},
-              
+              school:[{
              schoolId:{
                   type:mongoose.Schema.ObjectId,
-                ref:"school"},
+                ref:"school"}
+
+                
+            }],
               lessons:[{
                   lessonId:{
                  type:mongoose.Schema.ObjectId,

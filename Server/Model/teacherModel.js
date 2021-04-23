@@ -11,21 +11,33 @@ const teacherSchema = new mongoose.Schema({
             default: "teacher" 
           },
 
-           /* school: [
-                {
-                  schoolId: "#Ref",
-                  isActive: true
-                }
-              ],
-       
+              school:[{
+                schoolId:{
+                  type:mongoose.Schema.ObjectId,
+                  ref:"school"
+                },
+                  isActive:{
+                    type:Boolean,
+                    defaults:true,
+                    required:[true,"is active or not"]
+                
+              }
+              
+              }],
               class: [
                 {
-                  classId: "#Ref",
-                  lessonId: [
-                      "#Ref"
-                  ]
+                  classId:{
+                    type:mongoose.Schema.ObjectId,
+                    ref:"class"
+                    
+                } ,
+                lessonsId:{
+                  type:mongoose.Schema.ObjectId,
+                  ref:"lessons"
+                  
+              }
                 }
-              ]*/
+              ]
             
 
 });

@@ -11,11 +11,26 @@ const classSchema = new mongoose.Schema({
             required: [true, "level required"]
         },
        
-        classId:String,
-        studentsId:String,
-        lessonsId:String   
-          
+     
         
+        
+        studentId:{
+            type:mongoose.Schema.ObjectId,
+            ref:"student"
+            
+        },
+        
+
+          lessonsId:{
+            type:mongoose.Schema.ObjectId,
+            ref:"lessons"
+            
+        },
+        isActive:{
+            type:Boolean,
+            defaults:true,
+            required:[true,"is active or not"]
+        }
       
 });
 const classModelInfo=mongoose.model('class', classSchema);
