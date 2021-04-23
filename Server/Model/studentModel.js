@@ -14,6 +14,7 @@ const studentSchema= new mongoose.Schema({
             type: String,
             required: true 
         },
+      
         address:[{ 
           
           countryAddress:{type:String},
@@ -31,22 +32,41 @@ const studentSchema= new mongoose.Schema({
         },
         class: [
           {
-              type:String,
-              required: true,
-              classId:{required: true,type:String},
-              schoolId:{required: true,type:String},
-              lessons:{required: true,type:String},
-            reportId:[{
-                type:String,
+              classId:{
+                type:mongoose.Schema.ObjectId,
+                ref:"class"},
+              
+             schoolId:{
+                  type:mongoose.Schema.ObjectId,
+                ref:"school"},
+              lessons:[{
+                  lessonId:{
+                 type:mongoose.Schema.ObjectId,
+                 ref:"lesson"
+                  }}
+
+              ],
+            reportId:[
+                {
                 Term1:{type:String},
                 Term2:{type:String},
                 Term3:{type:String}
-            }],
+                }],
             yearOfStudy: {required: true,type:String}
-          
-          }]
-          //userId:{required: true,type:String}
+            }
+            ],
+          userId:{type:mongoose.Schema.ObjectId,
+         ref:"user"}
 });
+studentSchema.pre(/^find/, function(next){
+    this.populate({
+        path:"userId",
+        select:"email  role "
+   }).populate({
+       path:"class.schoolId",
+       select:"schoolName"
+   })
+})
 
 const studentInfo= mongoose.model("student", studentSchema);
 
