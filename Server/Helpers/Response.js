@@ -12,7 +12,7 @@ class  Response{
         status:status,
         message
 
-    });
+    })
     }
     static errorMessage=(res, error, status)=>{
         res.status(status).json({
