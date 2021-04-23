@@ -7,7 +7,8 @@ const lessonSchema=new mongoose.Schema({
         type:String
     },
     levelType:{
-        enum:["primary","olevel","Alevel"]
+        type:String,
+        enum:["primary","olevel","alevel"]
     },
 
 })

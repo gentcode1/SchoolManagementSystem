@@ -1,3 +1,4 @@
+
 import {check, validationResult} from 'express-validator';
 
 class Validation{
@@ -36,3 +37,4 @@ return next();
 }
 
 export default  Validation;
+
