@@ -9,7 +9,7 @@ class StudentController{
          lastName,
          address,
          guardian,
-         yearOfStudy
+         yearOfStudy,
          
      }= req.body
  
@@ -56,7 +56,8 @@ class StudentController{
     if(!studentData){
         return Response.errorMessage(res, "updating student failed", 404);
     }
-    return Response.successMessage(res, "student info updated successfully", studentData, 200);
+    const studentUpdateData= await studentInfo.findById(studentId)
+    return Response.successMessage(res, "student info updated successfully", studentUpdateData, 200);
  }
 
 }

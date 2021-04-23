@@ -12,10 +12,12 @@ class UserAuth{
         }=req.body;
     const userId = req.body.userId;
     const details= await userInfo.findById(userId);
-    const userExistPassword= bycrypt.compareSync(oldPassword, details.password)
+    
+    const userExistPassword= bycrypt.compareSync(oldPassword, details.password);
+    
     if(userExistPassword){
         if(newPassword===confirmPassword){
-       password= bycrypt.hashSync(newPassword, 15);
+         const password= bycrypt.hashSync(newPassword, 15);
        
        const passwordChangedTime= Date.now();
        const updatePassword= await userInfo.findByIdAndUpdate(userId,{
@@ -26,7 +28,7 @@ class UserAuth{
         }
       return Response.errorMessage(res, "failed to update password",417);
     }
-
+   return Response.errorMessage(res, "can not reach an old password", 404);
     }
 
     
