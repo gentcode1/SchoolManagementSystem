@@ -1,5 +1,5 @@
 import {dataFromToken} from '../Helpers/Token';
-import UserController from '../Controller/userController.';
+import UserController from '../Controller/userController..js';
 import Response from '../Helpers/Response';
 export const verifyAuth=async (req,res,next)=>{
     const token= req.header("x-auth-token");
