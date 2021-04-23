@@ -10,7 +10,7 @@ import studentRoute  from './Server/Router/studentRouter';
 
 const app = express();
 dotenv.config({ path: "./.env" });
-const app = express();
+
 
 app.use(bodyparser.json());
 app.use('/api/v1/school',router)

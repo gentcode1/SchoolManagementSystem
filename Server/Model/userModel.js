@@ -27,11 +27,11 @@ const userSchema= new mongoose.Schema({
     },
     newPassword:{
     type:String,
-    required:true
+    
     },
     confirmPassword:{
         type:String,
-        required:true
+        
     }
 });
 
