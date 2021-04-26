@@ -32,14 +32,13 @@ const userSchema= new mongoose.Schema({
     },
     confirmPassword:{
         type:String,
-        
-
+    },
     schoolId:{
         type:mongoose.Schema.ObjectId,
         ref:"school"
 
     }
-   
+
 });
 
 const userInfo= mongoose.model("user", userSchema);
