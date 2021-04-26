@@ -1,6 +1,18 @@
 import {check, validationResult} from 'express-validator';
+import Response from '../Helpers/Response';
+import userInfo from '../Model/userModel';
 
 class Validation{
+static verifyRole=function (requiredRole){
+        return (req, res, next)=>{
+            let {role}= req.body.user;
+            if(requiredRole!==role){
+                return  Response.errorMessage(res, "no access to this router", 401);
+            }
+          next();
+        }
+
+    }
     static validateUser() {
         return[
         check("email", "invalid email").isEmail(),
