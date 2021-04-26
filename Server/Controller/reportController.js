@@ -17,10 +17,7 @@ static createReport= async (req,res)=>{
      academicYear,
      gradeRetention
  }=req.body
- test= parseInt(req.body.test);
- exams= parseInt(req.body.exams);
- totalMarks= test+exams;
- req.body.totalMarks; 
+ 
  const reportData= await  reportInfo.create(req.body);
 
  if(!reportData){
