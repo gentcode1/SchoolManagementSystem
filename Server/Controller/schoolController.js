@@ -10,6 +10,7 @@ class schoolContoller{
             logo,
             website,
             headmaster,
+            userId
         }=req.body;
         const schoolDeatils= await schoolData.create(req.body);
         if (!schoolDeatils){

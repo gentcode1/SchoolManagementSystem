@@ -32,7 +32,7 @@ const schoolSchema=new mongoose.Schema({
     userId:{
         type:mongoose.Schema.ObjectId,
         ref:"user",
-        required:[true,"user is required"]
+        
     }
 });
 const schoolData= mongoose.model("school",schoolSchema);

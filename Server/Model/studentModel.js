@@ -30,17 +30,14 @@ const studentSchema= new mongoose.Schema({
             guardianEmail:{required: true,type:String},
             guardianRole:{required: true,type:String}
         },
-        class: [
+        yearOfStudy: {required: true,type:String},
+       /* class: [
           {
               classId:{
                 type:mongoose.Schema.ObjectId,
                 ref:"class"},
               school:[{
-             schoolId:{
-                  type:mongoose.Schema.ObjectId,
-                ref:"school"}
-
-                
+            
             }],
               lessons:[{
                   lessonId:{
@@ -55,9 +52,12 @@ const studentSchema= new mongoose.Schema({
                 Term2:{type:String},
                 Term3:{type:String}
                 }],
-            yearOfStudy: {required: true,type:String}
+            
             }
-            ],
+            ],*/
+            schoolId:{
+                type:mongoose.Schema.ObjectId,
+              ref:"school"},
           userId:{type:mongoose.Schema.ObjectId,
          ref:"user"}
 });
@@ -66,9 +66,10 @@ studentSchema.pre(/^find/, function(next){
         path:"userId",
         select:"email  role "
    }).populate({
-       path:"class.schoolId",
+       path:"schoolId",
        select:"schoolName"
    })
+   next();
 })
 
 const studentInfo= mongoose.model("student", studentSchema);
