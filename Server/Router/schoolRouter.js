@@ -3,7 +3,7 @@ import schoolController from '../Controller/schoolController'
 
 const router=express.Router();
 
-router.post("/create",schoolController.schoolInfo);
-router.get("/all",schoolController.getAllSchools);
-router.get("/one/:id",schoolController.getOneSchool);
+router.post("/school/create",schoolController.schoolInfo);
+router.get("/school",schoolController.getAllSchools);
+router.get("/school/:id",schoolController.getOneSchool);
 export default router;

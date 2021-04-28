@@ -17,7 +17,7 @@ static verifyRole=function (requiredRole){
         return[
         check("email", "invalid email").isEmail(),
         check("password","invalid password").isStrongPassword(),
-        check("role","invalid role").isIn(["student", "school","teacher"]),
+        check("role","invalid role").isIn(["student", "school","teacher","admin"]),
         ]
 }
 static signInVal() {

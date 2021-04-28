@@ -16,24 +16,27 @@ const reportSchema= new mongoose.Schema({
         type:String,
         required: true,
         },
-        marks:{
+        marks:[{
            test: {type:Number},
-            exams:{type:Number}
-        }
+            exams:{type:Number},
+            totalMarks:{type:Number},
+            marksPercentage:{type:Number}
+        }]
     }],
 
         className:{
             type:String,
-           
+            required:true 
         },
         academicYear:{
-            type:Number,
-            
+            type:String,
+            required:true
         },
         gradeRetention:
         {
             type:String,
-            enum:["promoted", "Repeat", "secondSeating"]
+            default:"",
+            enum:["","promoted", "Repeat", "secondSeating"]
             
         }
 });

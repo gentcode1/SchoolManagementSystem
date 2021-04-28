@@ -1,9 +1,9 @@
 import express from 'express';
 import teacherController from "../Controller/teacherController.js";
-const route =express.Router();
+const teacherRouter =express.Router();
 
-route.post("/create",teacherController.createTeacher);
-route.get("/create",teacherController. getAll);
-route.get("/create/:id",teacherController.getOne);
-route.patch("/create/:id",teacherController.updateOne);
-export default route;
+teacherRouter.post("/teacher/create",teacherController.createTeacher);
+teacherRouter.get("/teacher",teacherController. getAll);
+teacherRouter.get("/teacher/:id",teacherController.getOne);
+teacherRouter.patch("/teacher/:id",teacherController.updateOne);
+export default teacherRouter;

@@ -3,9 +3,9 @@ import lessonController from '../Controller/lessonController';
 
 
 const lessonRouter=express.Router();
-lessonRouter.post("/create/lesson",lessonController.createLesson);
-lessonRouter.get("/all",lessonController.getAllLessons);
-lessonRouter.get("/one/:id",lessonController.getOneLesson);
-lessonRouter.patch("/one/:id",lessonController.updateLesson);
+lessonRouter.post("/lesson/create",lessonController.createLesson);
+lessonRouter.get("/lesson",lessonController.getAllLessons);
+lessonRouter.get("/lesson/:id",lessonController.getOneLesson);
+lessonRouter.patch("/lesson/:id",lessonController.updateLesson);
 
 export default lessonRouter

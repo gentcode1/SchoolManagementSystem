@@ -18,13 +18,13 @@ const userSchema= new mongoose.Schema({
     },
     isActive:{
         type:Boolean,
-        defaults:true,
+        default:true,
         required:[true,"is active or not"]
     },
 
     passwordChangedTime:{
         type: String,
-        defaults: Date.now()
+        default: Date.now()
     },
     newPassword:{
     type:String,
