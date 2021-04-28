@@ -5,15 +5,16 @@ import mongoose from "mongoose";
 
 import ClassRouter from "./Server/Router/classRouter.js";
 
-import route from "./Server/Router/teacherRouter.js";
+import teacherRouter from "./Server/Router/teacherRouter.js";
 
-import router from "./Server/Router/schoolRouter"
+import schoolRouter from "./Server/Router/schoolRouter"
 import lessonRouter from "./Server/Router/lessonRouter"
 
 import userRouter from './Server/Router/userRouter';
 import authRouter from './Server/Router/userAuthRoute';
-import studentRoute  from './Server/Router/studentRouter';
-import reportRouter from './Server/Router/reportRouter';
+import studentRouter  from './Server/Router/studentRouter';
+import reportRouter from "./Server/Router/reportRouter";
+
 
 const app = express();
 dotenv.config({ path: "./.env" });
@@ -21,17 +22,18 @@ dotenv.config({ path: "./.env" });
 
 app.use(bodyparser.json());
 
-app.use('/api/v1/class', ClassRouter);
-app.use('/api/v1/teacher', route);
-app.use('/api/v1/report', reportRouter);
-app.use('/api/v1/school',router)
+app.use('/api/v1/shool-managment', ClassRouter);
+app.use('/api/v1/shool-managment', teacherRouter);
+app.use('/api/v1/shool-managment', reportRouter);
 
-app.use("/api/v1/user", userRouter);
+app.use('/api/v1/shool-managment',schoolRouter)
 
-app.use("/api/v1/lesson",lessonRouter)
+app.use("/api/v1/shool-managment", userRouter);
 
-app.use("/api/v1/user/auth", authRouter);
-app.use("/api/v1/student", studentRoute);
+app.use("/api/v1/shool-managment",lessonRouter)
+
+app.use("/api/v1/shool-managment", authRouter);
+app.use("/api/v1/shool-managment", studentRouter);
 
 
 

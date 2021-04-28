@@ -35,5 +35,14 @@ const schoolSchema=new mongoose.Schema({
         
     }
 });
+
+
+schoolSchema.pre(/^find/, function(next){
+    this.populate({
+        path:"userId",
+        select:"email isActive"
+   })
+   next();
+});
 const schoolData= mongoose.model("school",schoolSchema);
 export default schoolData;

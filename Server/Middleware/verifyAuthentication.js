@@ -10,14 +10,16 @@ if(!token){
 }
 try{
 const user= dataFromToken(token).payload;
-const data= userInfo.findById(user.id);
- req.body.userId= user.id
+const data= await userInfo.findById(user.id);
+
+ console.log(data);
 if (!data){
     return Response.errorMessage(res, "can't find user data!", 404);
 }
 if(data.passwordChangedTime!=user.passwordChangedTime){
     return Response.errorMessage(res, "please re_login  your passwords is not match", 404);
 }
+req.body.userId= user.id;
 req.body.user=user;
 return next();
 } 

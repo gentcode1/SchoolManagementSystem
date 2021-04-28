@@ -12,6 +12,7 @@ class schoolContoller{
             headmaster,
             userId
         }=req.body;
+        
         const schoolDeatils= await schoolData.create(req.body);
         if (!schoolDeatils){
             return Response.errorMessage(res,"problem with creating the account",417)
