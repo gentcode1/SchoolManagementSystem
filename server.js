@@ -13,7 +13,7 @@ import lessonRouter from "./Server/Router/lessonRouter"
 import userRouter from './Server/Router/userRouter';
 import authRouter from './Server/Router/userAuthRoute';
 import studentRoute  from './Server/Router/studentRouter';
-
+import reportRouter from './Server/Router/reportRouter';
 
 const app = express();
 dotenv.config({ path: "./.env" });
@@ -23,7 +23,7 @@ app.use(bodyparser.json());
 
 app.use('/api/v1/class', ClassRouter);
 app.use('/api/v1/teacher', route);
-
+app.use('/api/v1/report', reportRouter);
 app.use('/api/v1/school',router)
 
 app.use("/api/v1/user", userRouter);

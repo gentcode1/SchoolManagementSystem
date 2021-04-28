@@ -17,16 +17,33 @@ static createReport= async (req,res)=>{
      academicYear,
      gradeRetention
  }=req.body
- test= parseInt(req.body.test);
- exams= parseInt(req.body.exams);
- totalMarks= test+exams;
- req.body.totalMarks; 
  const reportData= await  reportInfo.create(req.body);
-
- if(!reportData){
+if(!reportData){
  return Response.errorMessage(res, "no report info provided" , 404);
  }
  return Response.successMessage(res, "report created successfully", reportData,200);
+}
+static updatingMarks= async (req,res)=>{
+  let{
+    lesson,
+    marks,
+    test,
+    exams,
+    totalMarks,
+    markspercentage 
+  }=req.body;
+  let reportIdFromParam= req.params.id;
+  const reportData= await  reportInfo.create(req.body);
+  const Report= await reportInfo.findByIdAndUpdate(reportIdFromParam,{
+    $push:{
+      reportId: reportData._id
+    }
+  });
+ console.log(Report);
+  if(!Report){
+    return Response.errorMessage(res, "can not find the update", 404);
+  }
+  return Response.successMessage(res, "report is updated", Report,200);
 }
 static getOnereport= async (req, res)=>{
     const reportId= req.params.id;
@@ -34,7 +51,13 @@ static getOnereport= async (req, res)=>{
  if(!reportData){
   return Response.errorMessage(res, "can not find this report", 404);
  }
- return Response.successMessage(res, "get the report successfully", reportData, 200);
+ console.log(reportData.report[0].marks)
+
+ const  test=reportData.report[0].marks.test ;
+ const exams= reportData.report[0].marks.exams;
+ const totalMarks= test+exams;
+
+return Response.successMessage(res, "get the report successfully", {Report:reportData,total:totalMarks}, 200);
 }
 static getAllReport= async (req, res)=>{
     const reportData= await reportInfo.find();
