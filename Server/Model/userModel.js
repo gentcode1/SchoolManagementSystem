@@ -8,7 +8,7 @@ const userSchema= new mongoose.Schema({
     },
     password:{
         type:String,
-        required:[true,"password required"]
+        
     },
     role:{
         type:String,

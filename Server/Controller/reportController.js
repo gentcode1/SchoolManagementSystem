@@ -23,14 +23,25 @@ class reportController {
     req.body.totalMarks;*/
     const reportData = await reportInfo.create(req.body);
 
+    
+  
+
     if (!reportData) {
       return Response.errorMessage(res, "no report info provided", 404);
     }
-    return Response.successMessage(res, "report created successfully", reportData, 200);
+    let result = 0;
+    report.forEach(element => {
+        
+    result = result+ element.marks.test + element.marks.exams
+     });
+    return Response.successMessage(res, "report created successfully",{reportData,resultTotal:result}, 200);
   }
   static addLessonReport = async (req, res) => {
     const reportId = req.params.id;
-    console.log(reportId)
+    let addresult = 0;
+   let test= req.body.marks.test;
+   let exams=req.body.marks.exams;
+   let addResult = addresult+ test +exams;
     const lesson = await reportInfo.findByIdAndUpdate(reportId, {
       $push: {
         report: req.body
@@ -40,7 +51,10 @@ class reportController {
     if (!lesson) {
       return Response.errorMessage(res, "no report info provided", 404);
     }
-    return Response.successMessage(res, "Lesson Added successfully", lesson, 200);
+    
+    
+    
+    return Response.successMessage(res, "Lesson Added successfully", {lesson,Total:addResult}, 200);
 
   }
 
@@ -50,13 +64,14 @@ class reportController {
     if (!reportData) {
       return Response.errorMessage(res, "can not find this report", 404);
     }
-    console.log(reportData.report)
+    
     const report = reportData.report;
 
     let totalMarks = 0;
-    report.forEach(element => {
-      totalMarks = totalMarks + element.marks[0].test + element.marks[0].exams
-    });
+  report.forEach(element => {
+      
+  totalMarks = totalMarks + element.marks.test + element.marks.exams
+   });
 
     return Response.successMessage(res, "get the report successfully", {reportData,Total:totalMarks}, 200);
   }

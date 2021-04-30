@@ -16,12 +16,12 @@ const reportSchema= new mongoose.Schema({
         type:String,
         required: true,
         },
-        marks:[{
+        marks:{
            test: {type:Number},
             exams:{type:Number},
             totalMarks:{type:Number},
             marksPercentage:{type:Number}
-        }]
+        }
     }],
 
         className:{
