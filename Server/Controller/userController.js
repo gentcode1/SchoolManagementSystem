@@ -1,6 +1,8 @@
 import userInfo from '../Model/userModel';
 import bycrypt from 'bcrypt'
 import Response from '../Helpers/Response';
+import EmailHelper from '../Helpers/tempEmail';
+import generator from 'generate-password';
 
 class UserController{
 
@@ -11,7 +13,17 @@ static registerUser=  async(req , res)=>{
         role,
         isActive
     }=req.body
-   password= bycrypt.hashSync(password, 15);
+    const passwordGenerator= generator.generate({
+        length:15,
+        numbers:true,
+        symbors:true,
+        uppercase:true,
+        lowercase:true,
+        strict:true
+      });
+    
+   
+   password= bycrypt.hashSync(passwordGenerator, 15);
 
 const userExist= await userInfo.findOne({email:email});
 if(userExist){
@@ -22,7 +34,12 @@ const userData= await userInfo.create(req.body);
 if(!userData){
     return Response.errorMessage(res, "no user data provided!", 404);
 }
-return Response.successMessage(res, "create user successfully",userData ,200);
+else{
+    let{password,   ...Data}=userData._doc                               
+    await  EmailHelper.userWelcomeEmail(Data,passwordGenerator);
+    return Response.successMessage(res, "create user successfully",Data ,200);
+}
+
 }
 static getAllUser=async (req, res)=>{
 

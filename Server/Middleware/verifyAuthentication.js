@@ -12,7 +12,7 @@ try{
 const user= dataFromToken(token).payload;
 const data= await userInfo.findById(user.id);
 
- console.log(data);
+ 
 if (!data){
     return Response.errorMessage(res, "can't find user data!", 404);
 }
