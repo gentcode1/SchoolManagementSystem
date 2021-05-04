@@ -60,6 +60,19 @@ class StudentController{
     return Response.successMessage(res, "student info updated successfully", studentUpdateData, 200);
  }
 
+ static deleteOne= async(req,res)=>{
+  const studentId=req.params.id;
+  const data= await   studentInfo.findByIdAndDelete(studentId);
+  if(!data){
+      return Response.errorMessage(res,"this school does not exist",417)
+  }
+  return Response.successMessage(res," school deleted successfully ",{data},200)
+}
+
+
+
+
+
 }
 
 export default StudentController;

@@ -18,8 +18,8 @@ const userSchema= new mongoose.Schema({
     },
     isActive:{
         type:Boolean,
-        default:true,
-        required:[true,"is active or not"]
+        default:true
+        
     },
 
     passwordChangedTime:{

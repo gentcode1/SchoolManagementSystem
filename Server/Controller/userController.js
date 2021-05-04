@@ -30,6 +30,14 @@ if(userExist){
 return Response.errorMessage(res, "user already exist", 409);
 }
 req.body.password=password;
+ const userFromToken= req.body.user;
+ if(userFromToken.role==="admin"){
+  req.body.role="school";
+ }
+else if(userFromToken==="school"){
+req.body.role="student"
+};
+
 const userData= await userInfo.create(req.body);
 if(!userData){
     return Response.errorMessage(res, "no user data provided!", 404);
@@ -76,6 +84,16 @@ static updateUser= async (req, res)=>{
  const updatedData= await userInfo.findById(userId)
  return Response.successMessage(res, "user updated successfully", updatedData ,200);
 }
+
+static deleteOne= async(req,res)=>{
+    const userId=req.params.id;
+    const data= await userInfo.findByIdAndDelete(userId);
+    if(!data){
+        return Response.errorMessage(res,"this school does not exist",417)
+    }
+    return Response.successMessage(res," school deleted successfully ",{data},200)
+  }
+
 
 }    
  export default UserController;

@@ -10,10 +10,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
-    },
+    
 
     address: [{
 
@@ -25,10 +22,10 @@ const studentSchema = new mongoose.Schema({
 
     guardian: {
 
-        guardianNames: { required: true, type: String },
-        guardianPhone: { required: true, type: String },
-        guardianEmail: { required: true, type: String },
-        guardianRole: { required: true, type: String }
+        guardianNames: { type: String },
+        guardianPhone: {  type: String },
+        guardianEmail: {  type: String },
+        guardianRole: { type: String }
     },
     yearOfStudy: { required: true, type: String },
     schoolId: {
