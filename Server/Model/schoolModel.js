@@ -16,19 +16,24 @@ const schoolSchema=new mongoose.Schema({
         type:String},
     website:{
         type:String},
-    headmaster:{
+    headmaster:[{
         names:{
-            type:String},
-        phone:{
-        type:String},
-        email:{
-            type:String},
-        yearOfStart:{
-            type:String},
-        isActive:{
-            enum:["true","false"]
+            type:String
         },
-    },
+        phone:{
+        type:String
+        },
+        email:{
+            type:String
+        },
+        yearOfStart:{
+            type:String
+        },
+        isActive:{
+            type:Boolean,
+            default:true
+            }
+    }],
     userId:{
         type:mongoose.Schema.ObjectId,
         ref:"user",

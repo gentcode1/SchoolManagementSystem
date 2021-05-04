@@ -36,25 +36,27 @@ class reportController {
      });
     return Response.successMessage(res, "report created successfully",{reportData,resultTotal:result}, 200);
   }
+
+  
   static addLessonReport = async (req, res) => {
     const reportId = req.params.id;
-    let addresult = 0;
-   let test= req.body.marks.test;
-   let exams=req.body.marks.exams;
-   let addResult = addresult+ test +exams;
-    const lesson = await reportInfo.findByIdAndUpdate(reportId, {
+    
+  let addresult = 0;
+  let test= req.body.marks.test;
+  let exams=req.body.marks.exams;
+  let addResult = addresult+ test +exams;
+    const reportData = await reportInfo.findByIdAndUpdate(reportId, {
       $push: {
         report: req.body
       }
 
     });
-    if (!lesson) {
+   console.log(reportData);
+    if (!reportData) {
       return Response.errorMessage(res, "no report info provided", 404);
     }
     
-    
-    
-    return Response.successMessage(res, "Lesson Added successfully", {lesson,Total:addResult}, 200);
+    return Response.successMessage(res, "Lesson Added successfully", {reportData,Total:addResult}, 200);
 
   }
 
@@ -115,5 +117,17 @@ class reportController {
     const data = reportInfo.findById(reportId);
     return Response.successMessage(res, "report updated successfully", data, 200);
   }
+  static deleteOne= async(req,res)=>{
+    const reportId=req.params.id;
+    const data= await  reportInfo.findByIdAndDelete(reportId);
+    if(!data){
+        return Response.errorMessage(res,"this school does not exist",417)
+    }
+    return Response.successMessage(res," school deleted successfully ",{data},200)
+}
+
+
+
+
 }
 export default reportController;

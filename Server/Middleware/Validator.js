@@ -29,7 +29,7 @@ static  validateStudent() {
  return[
     check("firstName","invalid first name").isAlpha(),
     check("lastName","invalid last name").isAlpha(),
-    check("yearOfStudy", " year of study need to be valid").isNumeric(),
+    //check("yearOfStudy", " year of study need to be valid").i(),
  ]
 }
 static inputValidation=(req,res, next)=>
